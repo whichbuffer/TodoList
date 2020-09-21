@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
@@ -21,13 +22,13 @@ class App extends React.Component {
         this.setState({todos:todosCopy,currentTodo:""});
     }
 
-
     deleteTodo = i => {
         let todosCopy = this.state.todos.slice();
         todosCopy.splice(i,1);
 
         this.setState({todos:todosCopy});
     }
+
 
     render(){
         let bulletTodos = this.state.todos.map((e,i) =>{
@@ -36,12 +37,14 @@ class App extends React.Component {
             );
         });
      return(
-         <div class="center">
-             <input placeholder="Enter Todo" value={this.state.currentTodo}
+         <div  class="center">
+             <div class="form-group mx-sm-3 mb-2">
+             <input type="text" class="form-control"  placeholder="Enter Todo" value={this.state.currentTodo}
              onChange={this.onInputChange}/>
-             <button class="btn" onClick={this.onClick}>Add!</button>
+             <button type="submit" class="btn btn-primary mb-4 mt-3" onClick={this.onClick}>Add new item!</button>
              <br/>
              {this.state.todos.length === 0 ? "No todos yet!" :<ul>{bulletTodos}</ul>}
+         </div>
          </div>
      );
     }
